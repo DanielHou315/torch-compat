@@ -1,7 +1,228 @@
 {
  "source": "https://download.pytorch.org/whl/torch/",
- "generated_utc": "2026-10-01T13:15:35+00:00",
+ "generated_utc": "2026-10-28T12:55:04+00:00",
  "combos": [
+  {
+   "torch": "2.15.0",
+   "accel": "xpu",
+   "accel_ver": "",
+   "os": "windows",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "xpu",
+   "accel_ver": "",
+   "os": "linux",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "rocm",
+   "accel_ver": "10.0",
+   "os": "linux",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "rocm",
+   "accel_ver": "7.14",
+   "os": "linux",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cuda",
+   "accel_ver": "13.4",
+   "os": "windows",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cuda",
+   "accel_ver": "13.4",
+   "os": "linux",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cuda",
+   "accel_ver": "13.4",
+   "os": "linux",
+   "arch": "aarch64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cuda",
+   "accel_ver": "13.2",
+   "os": "windows",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cuda",
+   "accel_ver": "13.2",
+   "os": "linux",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cuda",
+   "accel_ver": "13.2",
+   "os": "linux",
+   "arch": "aarch64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cpu",
+   "accel_ver": "",
+   "os": "windows",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cpu",
+   "accel_ver": "",
+   "os": "windows",
+   "arch": "arm64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cpu",
+   "accel_ver": "",
+   "os": "macos",
+   "arch": "arm64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cpu",
+   "accel_ver": "",
+   "os": "linux",
+   "arch": "x86_64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cpu",
+   "accel_ver": "",
+   "os": "linux",
+   "arch": "s390x",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14"
+   ]
+  },
+  {
+   "torch": "2.15.0",
+   "accel": "cpu",
+   "accel_ver": "",
+   "os": "linux",
+   "arch": "aarch64",
+   "python": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+   ]
+  },
   {
    "torch": "2.14.1",
    "accel": "xpu",
