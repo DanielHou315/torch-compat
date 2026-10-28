@@ -1,5 +1,6 @@
 # Keeps the site in sync with PyTorch releases:
-#   - daily cron scrapes the official wheel index and commits data changes
+#   - daily cron scrapes the official wheel index, fills curated CUDA/ROCm
+#     data for any new accelerator versions, and commits data changes
 #   - every push to main (and every data change) rebuilds and redeploys Pages
 name: Update data and deploy
 
@@ -36,19 +37,25 @@ jobs:
 
       - name: Run tests
         # Curated-data coverage runs in its own job: a brand-new CUDA/ROCm
-        # release must not stall the daily refresh and deploy.
+        # release the sync below can't resolve must not stall the deploy.
         run: python -m pytest tests/ -q -m "not curated_data"
 
       - name: Update compatibility data from PyTorch wheel index
         run: python scripts/update_data.py
 
+      - name: Fill curated data for new CUDA/ROCm versions
+        # Only touches the network when the matrix has a version the curated
+        # files lack. Gaps it can't fill are reported by the curated-data job.
+        continue-on-error: true
+        run: python scripts/sync_curated_data.py
+
       - name: Commit refreshed data
         if: github.event_name != 'pull_request'
         run: |
-          if ! git diff --quiet data/torch_matrix.json; then
+          if ! git diff --quiet data/; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/torch_matrix.json
+            git add data/
             git commit -m "chore: update PyTorch compatibility data"
             git pull --rebase origin main
             git push origin HEAD:main
@@ -65,10 +72,10 @@ jobs:
         with:
           path: _site
 
-  # Reports (but does not block on) hand-curated data that has fallen behind
-  # the freshly scraped wheel index -- e.g. PyTorch shipping wheels for a ROCm
-  # or CUDA version that data/rocm_support.json or data/cuda_*.json don't cover
-  # yet. The fix is to add the missing entry to the curated file.
+  # Reports (but does not block on) curated data that has fallen behind the
+  # freshly scraped wheel index and that sync_curated_data.py could not fill
+  # from vendor sources -- e.g. NVIDIA or AMD changed a page or manifest
+  # format. The fix is to add the missing entry to the curated file by hand.
   curated-data:
     runs-on: ubuntu-latest
     steps:
@@ -84,6 +91,10 @@ jobs:
 
       - name: Refresh matrix from the live wheel index
         run: python scripts/update_data.py
+
+      - name: Fill curated data for new CUDA/ROCm versions
+        continue-on-error: true
+        run: python scripts/sync_curated_data.py
 
       - name: Check curated data covers every accelerator version
         run: python -m pytest tests/ -q -m curated_data
