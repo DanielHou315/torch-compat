@@ -49,3 +49,8 @@ def test_embedded_dataset_is_valid_json(tmp_path):
     assert {"cuda", "rocm", "xpu", "cpu"} <= accels
     assert dataset["cuda_drivers"]["linux"]["12.1"] == "530.30.02"
     assert "gfx942" in dataset["rocm_support"]["7.0"]
+
+
+def test_faq_skips_null_driver_entries(tmp_path):
+    index = (build(tmp_path / "_site") / "index.html").read_text()
+    assert "needs driver None" not in index
