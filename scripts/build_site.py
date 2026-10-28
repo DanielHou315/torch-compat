@@ -56,7 +56,10 @@ def _summarize(combos: list) -> list:
 
 def _faq(summary: list, cuda_drivers: dict) -> list:
     latest = summary[0]
-    newest_cuda = latest["cuda"][-1] if latest["cuda"] else None
+    linux_drivers = cuda_drivers.get("linux", {})
+    # Recent toolkits only name a driver branch, stored as null; quote the
+    # newest CUDA version that has an exact minimum.
+    driver_cuda = next((v for v in reversed(latest["cuda"]) if linux_drivers.get(v)), None)
     faq = [
         {
             "q": f"Which CUDA versions does PyTorch {latest['torch']} support?",
@@ -72,11 +75,11 @@ def _faq(summary: list, cuda_drivers: dict) -> list:
             f"{', '.join(latest['python'])}.",
         },
     ]
-    if newest_cuda and newest_cuda in cuda_drivers.get("linux", {}):
+    if driver_cuda:
         faq.append({
             "q": "Which NVIDIA driver version do I need for PyTorch?",
             "a": f"It depends on the CUDA version of the wheel. For example, CUDA "
-            f"{newest_cuda} needs driver {cuda_drivers['linux'][newest_cuda]} or newer "
+            f"{driver_cuda} needs driver {linux_drivers[driver_cuda]} or newer "
             f"on Linux. Pick a PyTorch version and CUDA version above to see the "
             f"minimum driver for each build.",
         })
